@@ -1,0 +1,40 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\paragraph*{}
+  I'm basically curious about the following set and associated size function:
+
+\[S(n, k, z) = \{ (x, y) \in (\mathbb{Z}_m^k)^2 \mid \langle x, y \rangle = z \} \] 
+\[f(n, k, z) = |S(n, k, z)| \]
+
+\paragraph*{}
+  It's clear that there is a recursive definition of the set $S(n, k, z)$, recurring
+  on $k$:
+
+\[ S(n, k, z) = \oplus_{(x_1, y_1) \in \mathbb{Z}_m^2} append(x_1, y_1, S(n, k - 1, z - xy)) \]
+
+\paragraph*{}
+  Where $append$ will place $x_1, y_1$ on the front of each $x, y$ respectively. The reason
+  the above is true is because $\sum_i x_i y_i = z$ which implies $x_1 y_1 + \sum_{i>1} x_i y_i = z$
+  which implies $\sum_{i>1}x_iy_i = z - x_1y_1$. Clearly this is a disjoint union, as each
+  set of vectors will have "different heads". We thus can write the function $f$ as:
+
+\[ f(n, k, z) = \sum_{(x_1, y_1) \in \mathbb{Z}_m^2} f(n, k - 1, z - x_1y_1) \]
+
+\paragraph*{}
+  Using the fact that $ax \equiv b (\textit{mod } n)$ has exactly $(a, n)$ solutions if $(a, n) \mid
+  (b, n)$ and has no solutions otherwise, we have that:
+
+\[ f(n, 1, z) = \sum_{y \in \mathbb{Z}_n : (y, n) \mid (z, n)} (y, n) = \sum_{d \mid (z, n)} d \varphi(\frac{n}{d}) \]
+
+\[ f(n, 1, z) = n \sum_{d \mid (z, n)} \prod_{p | (n / d)} (1 - \frac{1}{p}) \]
+
+\paragraph*{}
+  At this point, all I can come to is that this function is quite difficult to compute and
+  essentially has no obvious and convenient closed form.
+
+\end{document}
