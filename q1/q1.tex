@@ -15,7 +15,7 @@
   It's clear that there is a recursive definition of the set $S(n, k, z)$, recurring
   on $k$:
 
-\[ S(n, k, z) = \oplus_{(x_1, y_1) \in \mathbb{Z}_m^2} append(x_1, y_1, S(n, k - 1, z - x_iy_i)) \]
+\[ S(n, k, z) = \oplus_{(x_1, y_1) \in \mathbb{Z}_m^2} append(x_1, y_1, S(n, k - 1, z - x_1y_1)) \]
 
 \paragraph*{}
   Where $append$ will place $x_1, y_1$ on the front of each $x, y$ respectively. The reason
